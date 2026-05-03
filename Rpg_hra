@@ -1,8 +1,82 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
+   
+    int hp = 0, maxHp = 0;
+    int utok = 0;
+    int mana = 0, maxMana = 0;
+    int zlato = 20;
+    int level = 1;
+    int zkusenosti = 0;
+	int schopnost1 = 0;
+	int schopnost2 = 0;
 
+    int volba;
+    bool potvrzeno = false;
+
+    cout << "=== CESTA ZA SILENTCHANTEM ===" << endl;
+
+    while (potvrzeno == false) {
+        cout << "\nVyber si svoji postavu:" << endl;
+        cout << "1) Rytir " << endl;
+        cout << "2) Mag " << endl;
+		cout << "3) Lukostrelec " << endl;
+        cout << "Vase volba: ";
+        cin >> volba;
+
+        if (volba == 1) {
+            hp = 25; maxHp = 25;
+            utok = 7;
+            mana = 5; maxMana = 5;
+        }
+        else if (volba == 2) {
+            hp = 8; maxHp = 8;
+            utok = 6;
+            mana = 20; maxMana = 20;
+		}
+        else if (volba == 3) {
+            hp = 12; maxHp = 12;
+            utok = 8;
+            mana = 10; maxMana = 10;
+        }
+
+        if (volba == 1 || volba == 2 || volba == 3) {
+            cout << "\n--- STATISTIKY POSTAVY A SCHOPNOSTI ---" << endl;
+           
+            if (volba == 1) {
+                cout << "Class: Rytir" << endl;
+			    cout << "Schopnost 1: Silny utok (Odebere nepritelovi 11 Hp)" << endl;
+                cout << "Schopnost 2: Stit (blokuje utok)" << endl;
+			}
+            if (volba == 2) {
+                cout << "Class: Mag" << endl;
+                cout << "Schopnost 1: Fireball (Odebere nepritelovi 12 Hp, stoji to 7 many)" << endl;
+                cout << "Schopnost 2: Leceni (Prida sobe 5 Hp, stoji to 5 many)" << endl;
+            }
+            if (volba == 3) {
+                cout << "Class: Lukostrelec" << endl;
+                cout << "Schopnost 1: Jedovaty sip (Odebere nepritelovi 10 Hp + jed)" << endl;
+                cout << "Schopnost 2: Prubojny sip (Odebere nepritelovi 7 Hp, stoji to 4 many)" << endl;
+            }
+                cout << "Zivoty: " << hp << "/" << maxHp << endl;
+                cout << "Utok: " << utok << endl;
+                cout << "Mana: " << mana << "/" << maxMana << endl;
+
+                cout << "\nChces tuto postavu? (1 - Ano / 0 - Vybrat jinou): ";
+            int potvrzeni;
+            cin >> potvrzeni;
+
+            if (potvrzeni == 1) {
+                potvrzeno = true;
+            }
+        }
+        else {
+            cout << "Neplatna volba, zkus to znovu!" << endl;
+        }
+    }
+
+    cout << "\nPostava potvrzena." << endl;
 
     return 0;
 }

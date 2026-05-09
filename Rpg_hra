@@ -78,5 +78,61 @@ int main() {
 
     cout << "\nPostava potvrzena." << endl;
 
+    int obchod_volba;
+    int odejit_z_vesnice = false;
+
+    cout << "\nDorazili jste do vesnice ---. Mas u sebe " << zlato << " zlata. " << endl;
+
+    while (odejit_z_vesnice == false) {
+        cout << "\n--- VESNICE A OBCHODY --- " << endl;
+        cout << "Kam chcete jit? " << endl;
+        cout << "1) Hospoda U --- (Muzes se najist a pricte ti to +5 k max HP - za jidlo musis zaplatit 10 zlatych). " << endl;
+        cout << "2) Cirkev (Kdyz poprosis aby ti rekli modlitbu na zdravi tak se ti pricte +5 k max mane - stoji to 10 zlatych) " << endl;
+        cout << "3) Do pole (Potkas tam moudreho rytire ktery ti muze natrenovat a pricte ti to +2 k utoku - poprosi abys mu dal 5 zlatych) " << endl;
+        cout << "4) Odejit z vesnice " << endl;
+        cout << "Tve zlato: " << zlato << " | Tvuj utok: " << utok << " | Tvuj max HP: " << maxHp << " | Tvoje max mana: " << maxMana << endl;
+        cout << "Tvoje volba: " << endl;
+        cin >> obchod_volba;
+
+            if (obchod_volba == 1) {
+        if (zlato >= 10) {
+            maxHp = maxHp + 5;
+            hp = maxHp;
+            zlato = zlato - 10;
+            cout << "--> Jses syty a stastny " << endl;
+        }
+        else {
+            cout << "--> Mas malo penez " << endl;
+        }
+    }
+    else if (obchod_volba == 2) {
+        if (zlato >= 10) {
+            maxMana = maxMana + 5;
+            mana = maxMana;
+            zlato = zlato - 10;
+            cout << "--> Citis se lepe a mas dobrou naladu " << endl;
+        }
+        else {
+            cout << "--> Mas malo penez " << endl;
+        }
+    }
+    else if (obchod_volba == 3) {
+        if (zlato >= 5) {
+            utok = utok + 2;
+            zlato = zlato - 5;
+            cout << "--> Mas pocit ze jsi silnejsi nez byl " << endl;
+        }
+        else {
+            cout << "--> Mas malo penez " << endl;
+        }
+    }
+    else if (obchod_volba == 4) {
+        odejit_z_vesnice = true;
+        cout << "Opoustis vesnici ---..." << endl;
+    }
+    else {
+        cout << "Neplatna volba!" << endl;
+    }
+}
     return 0;
 }

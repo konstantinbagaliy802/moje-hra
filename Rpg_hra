@@ -79,7 +79,7 @@ int main() {
     cout << "\nPostava potvrzena." << endl;
 
     int obchod_volba;
-    int odejit_z_vesnice = false;
+    bool odejit_z_vesnice = false;
 
     cout << "\nDorazili jste do vesnice ---. Mas u sebe " << zlato << " zlata. " << endl;
 
@@ -134,5 +134,116 @@ int main() {
         cout << "Neplatna volba!" << endl;
     }
 }
+
+    cout << "\n==========================================" << endl;
+    cout << "Vstoupil jsi do temneho lesa " << endl;
+    cout << "Z krovi na tebe vyskocil cerny vlk!" << endl;
+
+    int vlk_hp = 30;
+    int vlk_utok = 5;
+    int souboj_volba;
+
+    while (hp > 0 && vlk_hp > 0) {
+        cout << "Tvoje HP: " << hp << "/" << maxHp << " | Mana: " << mana << "/" << maxMana << " | HP Vlka: " << vlk_hp << endl;
+        cout << "Co udelas?" << endl;
+        cout << "1) Normalni utok (Zpusobi " << utok << " poskozeni)" << endl;
+
+        if (volba == 1) {
+            cout << "2) Silny utok (Zpusobi 11 poskozeni, stoji to 0 many)" << endl;
+            cout << "3) Stit (Zablokujes utok vlka, stoji to 0 many)" << endl;
+        }
+        else if (volba == 2) {
+            cout << "2) Fireball (Zpusobi 12 poskozeni, stoji to 7 many)" << endl;
+            cout << "3) Leceni (Prida 5 HP, stoji to 5 many)" << endl;
+        }
+        else if (volba == 3) {
+            cout << "2) Jedovaty sip (Zpusobi 10 poskozeni, stoji to 0 many)" << endl;
+            cout << "3) Prubojny sip (Zpusobi 7 poskozeni, stoji to 4 many)" << endl;
+        }
+
+        cout << "Vase volba: ";
+        cin >> souboj_volba;
+
+        bool hrac_blokuje = false;
+
+        if (souboj_volba == 1) {
+            vlk_hp = vlk_hp - utok;
+            cout << "--> Sekl jsi vlka a zpusobil jsi mu " << utok << " poskozeni " << endl;
+        }
+
+        else if (souboj_volba == 2) {
+            if (volba == 1) {
+                vlk_hp = vlk_hp - 11;
+                cout << "--> Pouzil jsi Silny utok a zpusobil vlkovi 11 poskozeni " << endl;
+            }
+            else if (volba == 2) {
+                if (mana >= 7) {
+                    vlk_hp = vlk_hp - 12;
+                    mana = mana - 7;
+                    cout << "--> Hodil jsi fireball! Vlk dostal za 12 poskozeni " << endl;
+                }
+                else {
+                    cout << "--> Mas malo many! Utok selhal a nic jsi neudelal " << endl;
+                }
+            }
+            else if (volba == 3) {
+                vlk_hp = vlk_hp - 10;
+                cout << "--> Vystrelil jsi jedovaty sip a zpusobil vlkovi 10 poskozeni  " << endl;
+            }
+        }
+
+        else if (souboj_volba == 3) {
+            if (volba == 1) {
+                hrac_blokuje = true;
+                cout << "--> Pozvedl jsi stit a jsi pripraven branit se " << endl;
+            }
+            else if (volba == 2) {
+                if (mana >= 5) {
+                    hp = hp + 5;
+                    if (hp > maxHp) hp = maxHp;
+                    mana = mana - 5;
+                    cout << "--> Seslal jsi Leceni a vylecil sis 5 HP " << endl;
+                }
+                else {
+                    cout << "--> Mas malo many! Kouzlo selhalo a nic jsi neudelal " << endl;
+                }
+            }
+            else if (volba == 3) {
+                if (mana >= 4) {
+                    vlk_hp = vlk_hp - 7;
+                    mana = mana - 4;
+                    cout << "--> Prubojny sip proletel vlkem za 7 poskozeni " << endl;
+                }
+                else {
+                    cout << "--> Mas malo many! Vystrel selhal " << endl;
+                }
+            }
+        }
+        else {
+            cout << "Zmatkoval jsi a nic jsi neudelal " << endl;
+        }
+
+        if (vlk_hp > 0) {
+            if (hrac_blokuje == true) {
+                cout << "--> Vlk skocil, ale tvuj Stit utok kompletne zablokoval " << endl;
+            }
+            else {
+                hp = hp - vlk_utok;
+                cout << "--> Vlk utoci! Kousl te a odebral " << vlk_utok << "HP" << endl;
+            }
+        }
+    }
+
+    if (hp > 0) {
+        cout << "Porazil jsi cerneho vlka" << endl;
+        zlato = zlato + 15;
+        zkusenosti = zkusenosti + 20;
+        cout << "Ziskavas 15 zlata a 20 zkusenosti" << endl;
+        cout << "Tvoje aktualni zlato: " << zlato << endl;
+    }
+    else {
+        cout << "Zemrel jsi " << endl;
+    }
     return 0;
 }
+
